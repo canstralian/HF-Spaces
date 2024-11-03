@@ -1,0 +1,38 @@
+# GitHub Actions Workflow: Pylint Code Analysis
+# This workflow runs Pylint on every push to ensure code quality across different Python versions.
+
+name: Pylint
+
+on:
+  push:  # Trigger Pylint analysis on every push
+  pull_request:  # Optional: You can also add this to run Pylint on pull requests
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]  # Test across specified Python versions
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python environment
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Step 3: Install Pylint and other dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+
+      # Step 4: Run Pylint on all Python files in the repository
+      - name: Run Pylint code analysis
+        run: |
+          pylint $(git ls-files '*.py')  # Runs Pylint on all Python files in the repository
+
