@@ -1,5 +1,5 @@
-entrypoint = "main.py"
 modules = ["python-3.10"]
+run = "python main.py"
 
 [nix]
 channel = "stable-23_05"
@@ -11,5 +11,10 @@ language = "python3"
 requiredFiles = [".replit", "replit.nix"]
 
 [deployment]
-run = ["python3", "main.py"]
+run = ["sh", "-c", "python main.py"]
 deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 7860
+externalPort = 80
+exposeLocalhost = true

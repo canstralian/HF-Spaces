@@ -2,3 +2,4 @@ gradio
 transformers 
 logging
 datasets
+sqlite3
