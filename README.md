@@ -1,5 +1,9 @@
 # HuggingFace Quick Start Template
 
+![Build Status](https://github.com/canstralian/HF-Spaces/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://img.shields.io/codecov/c/github/canstralian/HF-Spaces)
+![Dependencies](https://img.shields.io/librariesio/github/canstralian/HF-Spaces)
+
 This template provides a quick start for using HuggingFace datasets and spaces with Gradio for fine-tuning or training models.
 
 ## Setup
