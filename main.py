@@ -14,9 +14,9 @@ def create_connection(db_file):
     return conn
 
 # Function to create a table
-def create_table(conn):
+def create_table(conn, table_name):
     try:
-        sql_create_table = """CREATE TABLE IF NOT EXISTS predictions (
+        sql_create_table = f"""CREATE TABLE IF NOT EXISTS {table_name} (
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                                 text TEXT NOT NULL,
                                 label INTEGER
@@ -27,39 +27,100 @@ def create_table(conn):
         logging.error(f"Error creating table: {e}")
 
 # Function to insert prediction into the database
-def insert_prediction(conn, text, label):
-    sql = '''INSERT INTO predictions(text, label) VALUES(?,?)'''
+def insert_prediction(conn, table_name, text, label):
+    sql = f'''INSERT INTO {table_name}(text, label) VALUES(?,?)'''
     cursor = conn.cursor()
     cursor.execute(sql, (text, label))
     conn.commit()
     return cursor.lastrowid
 
 def load_data(dataset_name: str) -> Optional[Dataset]:
-    # Load dataset implementation (same as before)
-    ...
+    # Load dataset implementation
+    try:
+        dataset = load_dataset(dataset_name)
+        return dataset
+    except Exception as e:
+        logging.error(f"Error loading dataset: {e}")
+        return None
 
 def fine_tune_model(model_name: str, dataset: Dataset, num_samples: int = 1000, 
                     num_epochs: int = 3, batch_size: int = 8, output_dir: str = "./results") -> Optional[AutoModelForSequenceClassification]:
-    # Fine-tune model implementation (same as before)
-    ...
+    # Fine-tune model implementation
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForSequenceClassification.from_pretrained(model_name)
+
+        # Sample and preprocess the dataset
+        sampled_dataset = dataset.shuffle(seed=42).select(range(num_samples))
+        tokenized_dataset = sampled_dataset.map(lambda x: tokenizer(x['text'], truncation=True, padding=True), batched=True)
+
+        training_args = TrainingArguments(
+            output_dir=output_dir,
+            num_train_epochs=num_epochs,
+            per_device_train_batch_size=batch_size,
+            logging_dir='./logs',
+        )
+
+        trainer = Trainer(
+            model=model,
+            args=training_args,
+            train_dataset=tokenized_dataset
+        )
+
+        trainer.train()
+        return model
+    except Exception as e:
+        logging.error(f"Error fine-tuning model: {e}")
+        return None
 
 def classify_text(model: Optional[AutoModelForSequenceClassification], 
                   tokenizer: AutoTokenizer, text: str) -> Optional[int]:
-    # Classify text implementation (same as before)
-    ...
+    # Classify text implementation
+    try:
+        inputs = tokenizer(text, return_tensors="pt")
+        outputs = model(**inputs)
+        predictions = outputs.logits.argmax(dim=-1).item()
+        return predictions
+    except Exception as e:
+        logging.error(f"Error classifying text: {e}")
+        return None
 
 def main():
     # Main function implementation
-    ...
+
+    # Configuration variables
+    database = "predictions.db"
+    table_name = "predictions"
+    dataset_name = "your_dataset"
+    model_name = "your_model"
+    num_samples = 1000
+    num_epochs = 3
+    batch_size = 8
+    output_dir = "./results"
+
+    # Load dataset
+    dataset = load_data(dataset_name)
+    if not dataset:
+        logging.error("Dataset could not be loaded.")
+        return
+
+    # Fine-tune model
+    model = fine_tune_model(model_name, dataset, num_samples, num_epochs, batch_size, output_dir)
+    if not model:
+        logging.error("Model could not be fine-tuned.")
+        return
+
+    # Initialize tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     # SQLite database setup
-    database = "predictions.db"
     conn = create_connection(database)
-    create_table(conn)
+    create_table(conn, table_name)
 
     def predict(text: str) -> Optional[int]:
         label = classify_text(model, tokenizer, text)
-        insert_prediction(conn, text, label)  # Save prediction to SQLite
+        if label is not None:
+            insert_prediction(conn, table_name, text, label)  # Save prediction to SQLite
         return label
 
     gr.Interface(
