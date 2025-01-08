@@ -1,8 +1,8 @@
 # HuggingFace Quick Start Template
 
 ![Build Status](https://github.com/canstralian/HF-Spaces/actions/workflows/ci.yml/badge.svg)
-![Coverage](https://img.shields.io/codecov/c/github/canstralian/HF-Spaces)
-![Dependencies](https://img.shields.io/librariesio/github/canstralian/HF-Spaces)
+![Coverage](https://codecov.io/gh/canstralian/HF-Spaces/branch/main/graph/badge.svg)
+![Dependencies](https://img.shields.io/librariesio/release/github/canstralian/HF-Spaces)
 ![License](https://img.shields.io/github/license/canstralian/HF-Spaces)
 ![Last Commit](https://img.shields.io/github/last-commit/canstralian/HF-Spaces)
 ![Release](https://img.shields.io/github/v/release/canstralian/HF-Spaces)
