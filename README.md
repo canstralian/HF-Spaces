@@ -1,12 +1,12 @@
 # HuggingFace Quick Start Template
 
-![Build Status](https://github.com/canstralian/HF-Spaces/actions/workflows/ci.yml/badge.svg)
-![Coverage](https://codecov.io/gh/canstralian/HF-Spaces/branch/main/graph/badge.svg)
-![Dependencies](https://img.shields.io/librariesio/release/github/canstralian/HF-Spaces)
+![Build Status](https://github.com/canstralian/HF-Spaces/actions/workflows/main.yml/badge.svg)
 ![License](https://img.shields.io/github/license/canstralian/HF-Spaces)
-![Last Commit](https://img.shields.io/github/last-commit/canstralian/HF-Spaces)
-![Release](https://img.shields.io/github/v/release/canstralian/HF-Spaces)
+![Contributors](https://img.shields.io/github/contributors/canstralian/HF-Spaces)
+![Forks](https://img.shields.io/github/forks/canstralian/HF-Spaces)
+![Stars](https://img.shields.io/github/stars/canstralian/HF-Spaces)
 ![Issues](https://img.shields.io/github/issues/canstralian/HF-Spaces)
+![Pull Requests](https://img.shields.io/github/issues-pr/canstralian/HF-Spaces)
 
 This template provides a quick start for using HuggingFace datasets and spaces with Gradio for fine-tuning or training models.
 
