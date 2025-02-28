@@ -15,22 +15,15 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - name: Cache Python dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -62,13 +55,5 @@ jobs:
 
       - name: Deploy to Hugging Face Spaces
         run: |
-          for i in 1 2 3; do
-            huggingface-cli repo create ${{ env.REPO_NAME }} --type space || true
-            if huggingface-cli repo upload . --repo-id ${{ env.REPO_NAME }} --path-in-repo . --commit-message "Deploying Streamlit app"; then
-              echo "Deployment successful"
-              exit 0
-            fi
-            echo "Deployment attempt $i failed, retrying..."
-            sleep 10
-          done
-          exit 1
+          huggingface-cli repo create ${{ env.REPO_NAME }} --type space || true
+          huggingface-cli repo upload . --repo-id ${{ env.REPO_NAME }} --path-in-repo . --commit-message "Deploying Streamlit app"
