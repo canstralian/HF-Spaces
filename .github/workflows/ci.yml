@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI/CD Workflow for Streamlit Project
 
 on:
   push:
@@ -8,54 +8,67 @@ on:
     branches:
       - main
 
+env:
+  PYTHON_VERSION: '3.8'
+  REPO_NAME: 'my-streamlit-app'
+
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Cache Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Install dependencies
-      run: npm install
+      - name: Run tests
+        run: pytest
 
-    - name: Test
-      run: npm test
-
-    - name: Deploy to production
-      uses: adam-p/reusable-github-actions/deploy-to-gitHub-pages@v3
-      with:
-        branch: main
-        folder: public
-
-  lint:
+  deploy:
+    needs: test
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Lint
-      run: npm run lint
+      - name: Install Hugging Face CLI
+        run: pip install huggingface_hub
 
-  pre-commit-check:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Login to Hugging Face
+        env:
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+        run: huggingface-cli login --token $HUGGINGFACE_TOKEN
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
-
-    - name: Pre-commit check
-      run: prettier --check "./*.{js,json,md}"
+      - name: Deploy to Hugging Face Spaces
+        run: |
+          for i in 1 2 3; do
+            huggingface-cli repo create ${{ env.REPO_NAME }} --type space || true
+            if huggingface-cli repo upload . --repo-id ${{ env.REPO_NAME }} --path-in-repo . --commit-message "Deploying Streamlit app"; then
+              echo "Deployment successful"
+              exit 0
+            fi
+            echo "Deployment attempt $i failed, retrying..."
+            sleep 10
+          done
+          exit 1
