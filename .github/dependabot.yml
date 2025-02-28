@@ -1,10 +1,10 @@
-version: 2
-updates:
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
+1: version: 2
+2: modifications:
+3:   - package-environment: "pip"
+4:     path: "/"
+5:     timing:
+6:       frequency: "weekly"
+7:   - package-environment: "github-actions"
+8:     path: "/"
+9:     timing:
+10:       frequency: "weekly"
