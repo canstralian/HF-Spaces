@@ -61,5 +61,13 @@ jobs:
 
       - name: Deploy to Hugging Face Spaces
         run: |
-          huggingface-cli repo create ${{ env.REPO_NAME }} --type space || true
-          huggingface-cli repo upload . --repo-id ${{ env.REPO_NAME }} --path-in-repo . --commit-message "Deploying Streamlit app"
+          for i in 1 2 3; do
+            huggingface-cli repo create ${{ env.REPO_NAME }} --type space || true
+            if huggingface-cli repo upload . --repo-id ${{ env.REPO_NAME }} --path-in-repo . --commit-message "Deploying Streamlit app"; then
+              echo "Deployment successful"
+              exit 0
+            fi
+            echo "Deployment attempt $i failed, retrying..."
+            sleep 10
+          done
+          exit 1
