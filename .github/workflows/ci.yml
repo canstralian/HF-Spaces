@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI/CD Workflow for Streamlit Project
 
 on:
   push:
@@ -8,54 +8,52 @@ on:
     branches:
       - main
 
+env:
+  PYTHON_VERSION: '3.8'
+  REPO_NAME: 'my-streamlit-app'
+
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Test
-      run: npm test
+      - name: Run tests
+        run: pytest
 
-    - name: Deploy to production
-      uses: adam-p/reusable-github-actions/deploy-to-gitHub-pages@v3
-      with:
-        branch: main
-        folder: public
-
-  lint:
+  deploy:
+    needs: test
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Lint
-      run: npm run lint
+      - name: Install Hugging Face CLI
+        run: pip install huggingface_hub
 
-  pre-commit-check:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Login to Hugging Face
+        env:
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+        run: huggingface-cli login --token $HUGGINGFACE_TOKEN
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
-
-    - name: Pre-commit check
-      run: prettier --check "./*.{js,json,md}"
+      - name: Deploy to Hugging Face Spaces
+        run: |
+          huggingface-cli repo create ${{ env.REPO_NAME }} --type space || true
+          huggingface-cli repo upload . --repo-id ${{ env.REPO_NAME }} --path-in-repo . --commit-message "Deploying Streamlit app"
