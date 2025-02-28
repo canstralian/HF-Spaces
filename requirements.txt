@@ -8,4 +8,5 @@ sqlite3
 pylint
 pytest
 black
+flake8
 pillow>=10.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
