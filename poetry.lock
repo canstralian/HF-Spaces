@@ -222,7 +222,7 @@ description = "Timeout context manager for asyncio programs"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "async-timeout-4.0.3.tar.gz", hash = "sha256:4640d96be84d82d02ed59ea2b7105a0f7b33abe8703703cd0ab0bf87c427522f"},
     {file = "async_timeout-4.0.3-py3-none-any.whl", hash = "sha256:7405140ff1230c310e51dc27b3145b9092d659ce68ff733fb0cefe3ee42be028"},
@@ -515,7 +515,7 @@ description = "Backport of PEP 654 (exception groups)"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "exceptiongroup-1.2.2-py3-none-any.whl", hash = "sha256:3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b"},
     {file = "exceptiongroup-1.2.2.tar.gz", hash = "sha256:47c2edf7c6738fafb49fd34290706d1a1a2f4d1c6df275526b62cbb4aa5393cc"},
@@ -588,33 +588,33 @@ files = [
 
 [[package]]
 name = "flax"
-version = "0.8.5"
+version = "0.10.6"
 description = "Flax: A neural network library for JAX designed for flexibility"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "flax-0.8.5-py3-none-any.whl", hash = "sha256:c96e46d1c48a300d010ebf5c4846f163bdd7acc6efff5ff2bfb1cb5b08aa65d8"},
-    {file = "flax-0.8.5.tar.gz", hash = "sha256:4a9cb7950ece54b0addaa73d77eba24e46138dbe783d01987be79d20ccb2b09b"},
+    {file = "flax-0.10.6-py3-none-any.whl", hash = "sha256:86a5f0ba0f1603c687714999b58a4e362e784a6d2dc5a510b18a8e7a6c729e18"},
+    {file = "flax-0.10.6.tar.gz", hash = "sha256:8f3d1eb7de9bbaa18e08d0423dce890aef88a8b9dc6daa23baa631e8dfb09618"},
 ]
 
 [package.dependencies]
-jax = ">=0.4.27"
+jax = ">=0.5.1"
 msgpack = "*"
-numpy = [
-    {version = ">=1.23.2", markers = "python_version >= \"3.11\""},
-    {version = ">=1.22", markers = "python_version < \"3.11\""},
-]
+numpy = {version = ">=1.23.2", markers = "python_version >= \"3.11\""}
 optax = "*"
 orbax-checkpoint = "*"
 PyYAML = ">=5.4.1"
 rich = ">=11.1"
 tensorstore = "*"
-typing-extensions = ">=4.2"
+treescope = ">=0.1.7"
+typing_extensions = ">=4.2"
 
 [package.extras]
 all = ["matplotlib"]
-testing = ["black[jupyter] (==23.7.0)", "clu", "clu (<=0.0.9) ; python_version < \"3.10\"", "einops", "gymnasium[accept-rom-license,atari]", "jaxlib", "jaxtyping", "jraph (>=0.0.6dev0)", "ml-collections", "mypy", "nbstripout", "opencv-python", "penzai (>=0.1.2) ; python_version >= \"3.10\"", "pytest", "pytest-cov", "pytest-custom-exit-code", "pytest-xdist", "pytype", "sentencepiece", "tensorflow (>=2.12.0)", "tensorflow-datasets", "tensorflow-text (>=2.11.0)", "torch"]
+dev = ["nanobind (>=2.5.0)", "pre-commit (>=3.8.0)", "scikit-build-core[pyproject] (>=0.11.0)"]
+docs = ["Pygments (>=2.6.1)", "dm-haiku", "docutils (==0.16)", "einops", "ipykernel", "ipython_genutils", "ipywidgets (>=8.1.5)", "jupytext (==1.13.8)", "kagglehub (>=0.3.3)", "matplotlib", "ml_collections", "myst_nb", "nbstripout", "recommonmark", "scikit-learn", "sphinx (>=3.3.1)", "sphinx-book-theme", "sphinx-design"]
+testing = ["ale-py (>=0.10.2)", "cloudpickle (>=3.0.0)", "clu", "clu (<=0.0.9) ; python_version < \"3.10\"", "einops", "gymnasium[accept-rom-license,atari]", "jaxlib", "jaxtyping", "jraph (>=0.0.6dev0)", "ml-collections", "mypy", "opencv-python", "pytest", "pytest-cov", "pytest-custom_exit_code", "pytest-xdist", "pytype", "sentencepiece", "tensorflow (>=2.12.0)", "tensorflow_datasets", "tensorflow_text (>=2.11.0) ; platform_system != \"Darwin\"", "torch", "treescope (>=0.1.1) ; python_version >= \"3.10\""]
 
 [[package]]
 name = "frozenlist"
@@ -1097,61 +1097,65 @@ testing = ["jaraco.test (>=5.4)", "pytest (>=6)", "pytest-checkdocs (>=2.4)", "p
 
 [[package]]
 name = "jax"
-version = "0.4.31"
+version = "0.5.3"
 description = "Differentiate, compile, and transform Numpy code."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "jax-0.4.31-py3-none-any.whl", hash = "sha256:5688703735133d0dc537e99a1d646198a49c9d472d4715fde4bd437c44151bd7"},
-    {file = "jax-0.4.31.tar.gz", hash = "sha256:fd2d470643a0073d822737f0788f71391656af7e62cc5b2e7995ee390ceac287"},
+    {file = "jax-0.5.3-py3-none-any.whl", hash = "sha256:1483dc237b4f47e41755d69429e8c3c138736716147cd43bb2b99b259d4e3c41"},
+    {file = "jax-0.5.3.tar.gz", hash = "sha256:f17fcb0fd61dc289394af6ce4de2dada2312f2689bb0d73642c6f026a95fbb2c"},
 ]
 
 [package.dependencies]
-jaxlib = ">=0.4.30,<=0.4.31"
-ml-dtypes = ">=0.2.0"
-numpy = ">=1.24"
-opt-einsum = "*"
-scipy = ">=1.10"
+jaxlib = "0.5.3"
+ml_dtypes = ">=0.4.0"
+numpy = ">=1.25"
+opt_einsum = "*"
+scipy = ">=1.11.1"
 
 [package.extras]
-ci = ["jaxlib (==0.4.30)"]
-cuda = ["jax-cuda12-plugin[with-cuda] (==0.4.31)", "jaxlib (==0.4.31)"]
-cuda12 = ["jax-cuda12-plugin[with-cuda] (==0.4.31)", "jaxlib (==0.4.31)"]
-cuda12-local = ["jax-cuda12-plugin (==0.4.31)", "jaxlib (==0.4.31)"]
-cuda12-pip = ["jax-cuda12-plugin[with-cuda] (==0.4.31)", "jaxlib (==0.4.31)"]
-minimum-jaxlib = ["jaxlib (==0.4.30)"]
-tpu = ["jaxlib (==0.4.31)", "libtpu-nightly (==0.1.dev20240729)", "requests"]
+ci = ["jaxlib (==0.5.1)"]
+cuda = ["jax-cuda12-plugin[with-cuda] (==0.5.3)", "jaxlib (==0.5.3)"]
+cuda12 = ["jax-cuda12-plugin[with-cuda] (==0.5.3)", "jaxlib (==0.5.3)"]
+cuda12-local = ["jax-cuda12-plugin (==0.5.3)", "jaxlib (==0.5.3)"]
+cuda12-pip = ["jax-cuda12-plugin[with-cuda] (==0.5.3)", "jaxlib (==0.5.3)"]
+k8s = ["kubernetes"]
+minimum-jaxlib = ["jaxlib (==0.5.3)"]
+rocm = ["jax-rocm60-plugin (==0.5.3)", "jaxlib (==0.5.3)"]
+tpu = ["jaxlib (==0.5.3)", "libtpu (==0.0.11.*)", "requests"]
 
 [[package]]
 name = "jaxlib"
-version = "0.4.31"
+version = "0.5.3"
 description = "XLA library for JAX"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "jaxlib-0.4.31-cp310-cp310-macosx_10_14_x86_64.whl", hash = "sha256:48ea73cb78341bd4aabbb15e1a076ed61505ec80ab8eb4810e2d34758c400f80"},
-    {file = "jaxlib-0.4.31-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:bacb86012f9104dd71706266420fd1e5d179d826d0635c95fe31506d605b4537"},
-    {file = "jaxlib-0.4.31-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:d019023f71dba65127a3016ddc755de4b30f5bc9bd5b632a716a5fb3b00c5e53"},
-    {file = "jaxlib-0.4.31-cp310-cp310-manylinux2014_x86_64.whl", hash = "sha256:1b8e9e6970ecc08bd8b4d80c03d882f4dcd4ac119cb2959811ebc58fce1c263d"},
-    {file = "jaxlib-0.4.31-cp310-cp310-win_amd64.whl", hash = "sha256:d3540a557c188d23ef93760da482b158ca910124a0445263c3b17c09c114538a"},
-    {file = "jaxlib-0.4.31-cp311-cp311-macosx_10_14_x86_64.whl", hash = "sha256:1fd838ff91ea58ec2bdc7b4ecbb921ad501a318fafdeae120e6e7f88f5c20b17"},
-    {file = "jaxlib-0.4.31-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:86340df8b37729f6fc5742f17761857bb9e59c418c9453e9b090f49f6194cdf9"},
-    {file = "jaxlib-0.4.31-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:2d2639d210b0b1918dfaabbcc504fc668326e1a6fd1f0eb427c40b039188bbce"},
-    {file = "jaxlib-0.4.31-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:1db6f8ea35b884f9e7761b006ee9c60ed05be6c75d2e527551f74579cbe11677"},
-    {file = "jaxlib-0.4.31-cp311-cp311-win_amd64.whl", hash = "sha256:ceec494df08aaf65b8bbcbd40dd21a6579fa76ca5b851cce46fd7ce0388c0449"},
-    {file = "jaxlib-0.4.31-cp312-cp312-macosx_10_14_x86_64.whl", hash = "sha256:185fb615ab6bd95315fbcbd951d84e71f9835d603db8c03c91faee98ce95ff4d"},
-    {file = "jaxlib-0.4.31-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:c9f89c185287e40ee8173a7142d6495311e772cd139a93dca93f0d99c1872832"},
-    {file = "jaxlib-0.4.31-cp312-cp312-manylinux2014_aarch64.whl", hash = "sha256:4d867a1a0565b31cfdaabbec81e0302c6461bb2ac4b92c04670328d795819803"},
-    {file = "jaxlib-0.4.31-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:1f1afa5fd58a60f67f0ca586e26714aece62eaa2c8334c24d0e8285afc4a7ccd"},
-    {file = "jaxlib-0.4.31-cp312-cp312-win_amd64.whl", hash = "sha256:c4bfd15315e30525514b7262d555bea00745b09ac9818bb14c20ef8afbbab072"},
+    {file = "jaxlib-0.5.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:48ff5c89fb8a0fe04d475e9ddc074b4879a91d7ab68a51cec5cd1e87f81e6c47"},
+    {file = "jaxlib-0.5.3-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:972400db4af6e85270d81db5e6e620d31395f0472e510c50dfcd4cb3f72b7220"},
+    {file = "jaxlib-0.5.3-cp310-cp310-manylinux2014_x86_64.whl", hash = "sha256:52be6c9775aff738a61170d8c047505c75bb799a45518e66a7a0908127b11785"},
+    {file = "jaxlib-0.5.3-cp310-cp310-win_amd64.whl", hash = "sha256:b41a6fcaeb374fabc4ee7e74cfed60843bdab607cd54f60a68b7f7655cde2b66"},
+    {file = "jaxlib-0.5.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:b62bd8b29e5a4f9bfaa57c8daf6e04820b2c994f448f3dec602d64255545e9f2"},
+    {file = "jaxlib-0.5.3-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:a4666f81d72c060ed3e581ded116a9caa9b0a70a148a54cb12a1d3afca3624b5"},
+    {file = "jaxlib-0.5.3-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:29e1530fc81833216f1e28b578d0c59697654f72ee31c7a44ed7753baf5ac466"},
+    {file = "jaxlib-0.5.3-cp311-cp311-win_amd64.whl", hash = "sha256:8eb54e38d789557579f900ea3d70f104a440f8555a9681ed45f4a122dcbfd92e"},
+    {file = "jaxlib-0.5.3-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:d394dbde4a1c6bd67501cfb29d3819a10b900cb534cc0fc603319f7092f24cfa"},
+    {file = "jaxlib-0.5.3-cp312-cp312-manylinux2014_aarch64.whl", hash = "sha256:bddf6360377aa1c792e47fd87f307c342e331e5ff3582f940b1bca00f6b4bc73"},
+    {file = "jaxlib-0.5.3-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:5a5e88ab1cd6fdf78d69abe3544e8f09cce200dd339bb85fbe3c2ea67f2a5e68"},
+    {file = "jaxlib-0.5.3-cp312-cp312-win_amd64.whl", hash = "sha256:520665929649f29f7d948d4070dbaf3e032a4c1f7c11f2863eac73320fcee784"},
+    {file = "jaxlib-0.5.3-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:31321c25282a06a6dfc940507bc14d0a0ac838d8ced6c07aa00a7fae34ce7b3f"},
+    {file = "jaxlib-0.5.3-cp313-cp313-manylinux2014_aarch64.whl", hash = "sha256:e904b92dedfbc7e545725a8d7676987030ae9c069001d94701bc109c6dab4100"},
+    {file = "jaxlib-0.5.3-cp313-cp313-manylinux2014_x86_64.whl", hash = "sha256:bb7593cb7fffcb13963f22fa5229ed960b8fb4ae5ec3b0820048cbd67f1e8e31"},
+    {file = "jaxlib-0.5.3-cp313-cp313-win_amd64.whl", hash = "sha256:8019f73a10b1290f988dd3768c684f3a8a147239091c3b790ce7e47e3bbc00bd"},
+    {file = "jaxlib-0.5.3-cp313-cp313t-manylinux2014_x86_64.whl", hash = "sha256:4c9a9d4cda091a3ef068ace8379fff9e98eea2fc51dbdd7c3386144a1bdf715d"},
 ]
 
 [package.dependencies]
-ml-dtypes = ">=0.2.0"
-numpy = ">=1.24"
-scipy = ">=1.10"
+ml_dtypes = ">=0.2.0"
+numpy = ">=1.25"
+scipy = ">=1.11.1"
 
 [[package]]
 name = "jinja2"
@@ -1366,7 +1370,7 @@ files = [
 [package.dependencies]
 numpy = [
     {version = ">=1.23.3", markers = "python_version >= \"3.11\""},
-    {version = ">=1.21.2", markers = "python_version >= \"3.10\""},
+    {version = ">=1.21.2", markers = "python_version == \"3.10\""},
 ]
 
 [package.extras]
@@ -3241,6 +3245,27 @@ video = ["av"]
 vision = ["Pillow (>=10.0.1,<=15.0)"]
 
 [[package]]
+name = "treescope"
+version = "0.1.9"
+description = "Treescope: An interactive HTML pretty-printer for ML research in IPython notebooks."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "treescope-0.1.9-py3-none-any.whl", hash = "sha256:68677013a9f0228212fccf835f3fb037be07ae8b4c5f6f58eefab11198f83cf7"},
+    {file = "treescope-0.1.9.tar.gz", hash = "sha256:ba6cdbdc9c5b52691d5f3bb4c5d5c7daa5627119acac8640b46d37e6aabe63a6"},
+]
+
+[package.dependencies]
+numpy = ">=1.25.2"
+
+[package.extras]
+dev = ["ipython", "jupyter", "pyink (>=24.3.0)", "pylint (>=2.6.0)", "pytest (>=8.2.2)", "pytype"]
+docs = ["ipython", "ipython (>=8.8.0)", "jax[cpu] (>=0.4.23)", "matplotlib (>=3.5.0)", "myst-nb (>=1.0.0)", "myst-parser (>=3.0.1)", "packaging (==24.1)", "palettable (==3.3.3)", "pandas (==2.2.2)", "penzai (>=0.2.4,<0.3.0)", "plotly (==5.22.0)", "sphinx (>=6.0.0,<7.3.0)", "sphinx-book-theme (>=1.0.1)", "sphinx-hoverxref", "sphinx_contributors", "sphinxcontrib-katex", "torch (==2.3.1)"]
+notebook = ["ipython", "jax (>=0.4.23)", "palettable"]
+test = ["absl-py (>=1.4.0)", "jax (>=0.4.23)", "omegaconf (>=2.0.0)", "pydantic (>=2.0.0)", "pytest (>=8.2.2)", "torch (>=2.0.0)"]
+
+[[package]]
 name = "typer"
 version = "0.12.3"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
@@ -3773,4 +3798,4 @@ test = ["big-O", "importlib-resources ; python_version < \"3.9\"", "jaraco.funct
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "4172efd5c9f4226d3141ff09fa1ab94af12c82d4abd192dc24691cf9df15d1a6"
+content-hash = "e297c531d1c5d0675b36b7cc55534652f41daba37fa6071e5f5787e561cb9832"
