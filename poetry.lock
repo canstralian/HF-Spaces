@@ -775,14 +775,14 @@ six = "*"
 
 [[package]]
 name = "gradio"
-version = "5.31.0"
+version = "5.35.0"
 description = "Python library for easily interacting with trained machine learning models"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "gradio-5.31.0-py3-none-any.whl", hash = "sha256:4a31956c7290ce1277db07f15f197b602df2e7be147083136265d52e7887b156"},
-    {file = "gradio-5.31.0.tar.gz", hash = "sha256:fba0c84d69cf489938eb64bef4c19d53300eb9af62e8cc0b12e02ae9072b7623"},
+    {file = "gradio-5.35.0-py3-none-any.whl", hash = "sha256:781a80df25355861e44fd2819fac4ed43cf08ea77911570fb0682f6ae16b9c7c"},
+    {file = "gradio-5.35.0.tar.gz", hash = "sha256:f3e68ab02cfe0d9f364068883c8caf30b5b6fb62c10a19ccea3583a0c2e50acd"},
 ]
 
 [package.dependencies]
@@ -790,7 +790,7 @@ aiofiles = ">=22.0,<25.0"
 anyio = ">=3.0,<5.0"
 fastapi = ">=0.115.2,<1.0"
 ffmpy = "*"
-gradio-client = "1.10.1"
+gradio-client = "1.10.4"
 groovy = ">=0.1,<1.0"
 httpx = ">=0.24.1"
 huggingface-hub = ">=0.28.1"
@@ -816,19 +816,19 @@ urllib3 = {version = ">=2.0,<3.0", markers = "sys_platform == \"emscripten\""}
 uvicorn = {version = ">=0.14.0", markers = "sys_platform != \"emscripten\""}
 
 [package.extras]
-mcp = ["mcp (==1.9.0)", "pydantic (>=2.11) ; sys_platform != \"emscripten\""]
+mcp = ["mcp (==1.9.3)", "pydantic (>=2.11) ; sys_platform != \"emscripten\""]
 oauth = ["authlib", "itsdangerous"]
 
 [[package]]
 name = "gradio-client"
-version = "1.10.1"
+version = "1.10.4"
 description = "Python library for easily interacting with trained machine learning models"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "gradio_client-1.10.1-py3-none-any.whl", hash = "sha256:fcff53f6aad3dfa9dd082adedb94256172d6b20666b1ef66480d82023e1907db"},
-    {file = "gradio_client-1.10.1.tar.gz", hash = "sha256:550662eae8dc0d06d44cb8d42be74f214db1e793ad4d789d7b7ecb42e82ca045"},
+    {file = "gradio_client-1.10.4-py3-none-any.whl", hash = "sha256:271018368f4f0a2d2dfb943bbd495277518172be50e44f54d99c62fa5533ae09"},
+    {file = "gradio_client-1.10.4.tar.gz", hash = "sha256:5dd0ff615f859b8d9fd3ce88555278e3d48bb6ffef79eb956a01e132edbcc1b0"},
 ]
 
 [package.dependencies]
@@ -3773,4 +3773,4 @@ test = ["big-O", "importlib-resources ; python_version < \"3.9\"", "jaraco.funct
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "4172efd5c9f4226d3141ff09fa1ab94af12c82d4abd192dc24691cf9df15d1a6"
+content-hash = "cc8b23e69a982c7f584566cd5a8b9df1bd2777ab7e6565555cee11a8dd9ecc8e"
