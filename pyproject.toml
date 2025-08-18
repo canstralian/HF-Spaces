@@ -10,7 +10,7 @@ transformers = "^4.50.0"
 datasets = "^2.20.0"
 gradio = "^5.31.0"
 flax = "0.8.5"
-tensorflow = "2.17.0"
+tensorflow = "2.20.0"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
