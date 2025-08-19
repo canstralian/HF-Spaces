@@ -7,7 +7,7 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.12"
 transformers = "^4.55.2"
-datasets = "^2.20.0"
+datasets = "^4.0.0"
 gradio = "^5.31.0"
 flax = "0.8.5"
 tensorflow = "2.20.0"
