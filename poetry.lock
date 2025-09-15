@@ -907,14 +907,14 @@ six = "*"
 
 [[package]]
 name = "gradio"
-version = "5.42.0"
+version = "5.45.0"
 description = "Python library for easily interacting with trained machine learning models"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "gradio-5.42.0-py3-none-any.whl", hash = "sha256:3e11c076f4eaa2d545fb176551a2a72e951374882b8543aeebd45739085da5d2"},
-    {file = "gradio-5.42.0.tar.gz", hash = "sha256:74c8e18a3e6b7bd26396e8ed949521c0cde9bed68a15f589a9706f7cbcb8685f"},
+    {file = "gradio-5.45.0-py3-none-any.whl", hash = "sha256:71f3fdefa9a0f64d4bf48ebdb132e287bf81679be094124144dd55fbcf538097"},
+    {file = "gradio-5.45.0.tar.gz", hash = "sha256:a45a0c868566d1db27cf77994a8f529fe5ce5b2673b9d2b9f3d99b4fbc1f89c7"},
 ]
 
 [package.dependencies]
@@ -923,7 +923,7 @@ anyio = ">=3.0,<5.0"
 brotli = ">=1.1.0"
 fastapi = ">=0.115.2,<1.0"
 ffmpy = "*"
-gradio-client = "1.11.1"
+gradio-client = "1.13.0"
 groovy = ">=0.1,<1.0"
 httpx = ">=0.24.1,<1.0"
 huggingface-hub = ">=0.33.5,<1.0"
@@ -954,14 +954,14 @@ oauth = ["authlib", "itsdangerous"]
 
 [[package]]
 name = "gradio-client"
-version = "1.11.1"
+version = "1.13.0"
 description = "Python library for easily interacting with trained machine learning models"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "gradio_client-1.11.1-py3-none-any.whl", hash = "sha256:eb7870c2eb0c18f22613f0635a50ca805fdf6e8ddeb71d9f06b398b876372487"},
-    {file = "gradio_client-1.11.1.tar.gz", hash = "sha256:0d4885fea23b0d5ff8f4c34824839e0aa7fd1ba4f120928a7fc3a6ebde42abab"},
+    {file = "gradio_client-1.13.0-py3-none-any.whl", hash = "sha256:4489ebd07ae40c6cc7a6a02cf60a53e9e3345aa5342a3814c356775bbad64bbc"},
+    {file = "gradio_client-1.13.0.tar.gz", hash = "sha256:07de7e8e58553335d56e0c7db6af60f1205fd1f167bf07f3e0f587888695a8f3"},
 ]
 
 [package.dependencies]
@@ -3884,4 +3884,4 @@ test = ["big-O", "importlib-resources ; python_version < \"3.9\"", "jaraco.funct
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "00567b9bbe6600b580198f335e8f2314cdbd86f76628faf526645dbd0ca38fbf"
+content-hash = "16a12b1cdfdbf4d792d90ec022ba4b2d596849af81d6b5e8c130083c901d7501"
